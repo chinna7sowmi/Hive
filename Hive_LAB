@@ -1,0 +1,78 @@
+[cloudera@quickstart ~]$ hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j.p                                                                                                             roperties
+WARNING: Hive CLI is deprecated and migration to Beeline is recommended.
+hive> create database hive_one;
+OK
+Time taken: 1.581 seconds
+hive> show databases;
+OK
+default
+hive_one
+Time taken: 0.292 seconds, Fetched: 2 row(s)
+hive> use hive_one;
+OK
+Time taken: 0.045 seconds
+
+show databases;
+OK
+default
+hive_one
+Time taken: 0.377 seconds, Fetched: 2 row(s)
+hive> use hive_one;
+OK
+Time taken: 0.022 seconds
+hive> create table department_data
+    > (dept_id int,
+    > dept_name string,
+    > manager_id int,
+    > salary int)
+    > row format delimited
+    > fields terminated by ',';
+OK
+Time taken: 0.288 seconds
+hive> show tables;
+OK
+department_data
+Time taken: 0.073 seconds, Fetched: 1 row(s)
+hive> describe department_data;
+OK
+dept_id                 int
+dept_name               string
+manager_id              int
+salary                  int
+Time taken: 0.119 seconds, Fetched: 4 row(s)
+hive> describe formatted department_data;
+OK
+# col_name              data_type               comment
+
+dept_id                 int
+dept_name               string
+manager_id              int
+salary                  int
+
+# Detailed Table Information
+Database:               hive_one
+Owner:                  cloudera
+CreateTime:             Mon Sep 12 20:25:03 PDT 2022
+LastAccessTime:         UNKNOWN
+Protect Mode:           None
+Retention:              0
+Location:               hdfs://quickstart.cloudera:8020/user/hive/warehouse/hive                                                                                                             _one.db/department_data
+Table Type:             MANAGED_TABLE
+Table Parameters:
+        transient_lastDdlTime   1663039503
+
+# Storage Information
+SerDe Library:          org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+InputFormat:            org.apache.hadoop.mapred.TextInputFormat
+OutputFormat:           org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputForm                                                                                                             at
+Compressed:             No
+Num Buckets:            -1
+Bucket Columns:         []
+Sort Columns:           []
+Storage Desc Params:
+        field.delim             ,
+        serialization.format    ,
+Time taken: 0.081 seconds, Fetched: 30 row(s)
+hive>
